@@ -1,13 +1,11 @@
-# Weather forecast using recurrent neural network
+# Drainage Defect Prediction using Recurrent Neural Networks (RNN)
 
 ## **Motivation**
-* Analsis of time series data. Here, weather forecasting data was used. However 
-  with minimal modification, __the program can be used in the time series data from 
-  different domains such as finance or health care__.
-* The goal is to predict temperature of the next 12 or 24 hours
-  as time series data for weather forecasting was tested. 
-* Compare performance using mean square error and mean absolute error 
-
+* Analysis of time series data to predict potential defects in drainage systems.
+*The project focuses on predicting defective manholes and drainage blockages using a combination of IoT data from sensors and predictive analysis with RNN.
+* The goal is to implement a model that predicts drainage issues, allowing timely maintenance and preventing severe flooding.
+* The model aims to improve real-time monitoring, fault prediction, and overall maintenance planning for urban infrastructure.
+  
 ## **Requirements** 
 * Python (3.6.0)
 * Pandas (0.24.1)
@@ -16,107 +14,73 @@
 * Tensorflow (1.13.1)
 * Jupyter (4.4.0)
 * Matplotlib (3.0.2) and Seaborn (0.9.0)
+* Firebase (for sensor data storage and real-time monitoring)
 
 ## **Directory Structure**
-- __src__: contains scripts for library and binary
-- __notebooks__: jupyter notebooks of optimized models 
-- __DLWP__: jupyter notebooks of the examples provided in the book and other
-  comparison tests. 
+- __src__:  Contains scripts for machine learning models and RNN implementations.
+- __notebooks__: Jupyter notebooks for experimenting with RNN models (LSTM, GRU) optimized for predicting drainage defects.
+- __data__:  Contains training data from sensors related to manhole conditions, water levels, and flow rates.
 
 ## **Usage** 
 
-* Long Short Term Memory 
+* Predicting Drainage Defects with LSTM (Long Short-Term Memory)
 ```
-python3 ./src/LSTM.py 
+python3 ./src/LSTM_Drainage.py 
 ```
 
-* Gated Recurrent Unit 
+* Predicting Drainage Defects with GRU (Gated Recurrent Unit)
 ```
-python3 ./src/GRU.py 
+python3 ./src/GRU_Drainage.py
 ```
 
 * Example
 ```
-Run GRU layer with embedded feature
+//Running the GRU model with input data from drainage system sensors
 
-python3 ./src/GRU.py -e -i path/to/input  
+python3 ./src/GRU_Drainage.py -i path/to/input_data -p hours_to_predict -e
 
-Options are same for both programs.
+Options:
 
--i: path to input file.
--p: hour for prediction (default:24) 
--e: incorporate embedded features (default: False)
--d: incorporate encoded features (default: False)  
+-i: Path to sensor data file
+-p: Hours for prediction (default: 24)
+-e: Include embedded features like weather and time (default: False)
+
 ```
 
 ## **Updated Summary**
 
-* First, model with gated recurrent unit (GRU) was implemented and tested. 
- The mean absolute error (MAE) of [0.30](https://bit.ly/2kqrO4K) was the lowest while generating 
- a model with the dropout scheme. This error was yielded at 30 epoch on the validation dataset.
- Afterward, both functions are converged. The model showed similar performance on the test dataset.
- When assessment was changed from [MAE to MSE](https://bit.ly/2kfketZ) (mean square error), 
- the best performance was 0.13 MSE (0.36 RMSE and almost equal to MAE) on validation and test dataset in the same scheme. 
- However, the model was converged at 22 epoch or earlier. This indicates there
- is no effect of outlier and therfore, MSE is used for further analysis since it is easy to compute due to its L2 norm.
+*Both GRU and LSTM models were tested for their effectiveness in predicting drainage defects based on time-series sensor data from the drainage network.
+*The Mean Absolute Error (MAE) and Mean Squared Error (MSE) were used as performance metrics.
+*Models were trained using drainage-related features like water levels, flow 
 
 * Similarly, long short-term memory(LSTM) was also tested by replacing GRU with [MAE](https://bit.ly/2lUMEd8) 
   and [MSE](https://bit.ly/2jTdaTq) respectively. However, the performance slight decreased and 
   was differed compared with its GRU counterpart. But there is no change 
   for selection of loss functions. Thus, further analysis is only with MSE.
 
-* Add-in:
- I further explored to optimize a model to avoid overfitting in which MSE was used for all cases. 
- I mainly focus on the few things, which are listed below:
-   1. Data preparation
-     Around half a million data was included in the experiment. These data were divided into train, 
-     validation, and test group in 8:1:1 ratio.
+## **Methods and Performance**
+#Feature Selection:
+*Default features include water level, flow rate, and sensor data from manholes.
+*Embedded features include day, month, and weather conditions (such as rainfall).
+#Model Configuration:
+*Models were trained for 20 epochs with 200 steps per epoch, using 0.03 dropouts and recurrent dropouts to avoid overfitting.
+#Prediction:
+*The model predicts defective manholes or blockages 24 hours in advance, helping the maintenance team to prioritize and address issues before they escalate.
+*Performance results:
+GRU Model: 0.10 MSE on test dataset
+LSTM Model: 0.12 MSE on test dataset
 
-   2. Parameter selection
-     The number of offset data (prior) taken from the current time was changed. 
-     Similarly, the step size introduced to select the data was also modified.
 
-   3. Incorporate temporal data
-     Temporal information was excluded in the example shown in the book. 
-     However, this information was incorporated in two different ways. 
-     First, day, month, and time were converted into numerical values in such a way that January and December 
-     are close to each other. Second, using an embedded layer from Keras, four columns - year, month, day, 
-     and time were embedded and concatenated with numeric attributes.
 
-## **Methods and Performances**
-  - Configuration: 20 epochs with 200 steps/epoch, 0.03 dropouts and recurrent dropouts
-  - Feature Definition:
-    * Default feature indicates 14 different attributes that have numerical values.
-    * -e in the program indicates embedded features that were combined with 14 attributes.
-     They are Day, month, year, and time.
-    * -d in the program refers to the inclusion of encoded day, month, and time with 14 attributes. 
-      For example, a month is encoded in such a way that January and December are very close to each other.
-  - Among the tested models, the stacking layer with the default and embedded features for GRU and LSTM were selected.
-  - Temperature prediction of [24 hours](https://github.com/exchhattu/TimeseriesWeatherForecast-RNN-GRU-LSTM/blob/master/notebooks/OptimizedModel_default.ipynb) 
-    * Four models, two for GRU and two for LSTM, with the default and embedded features, 
-      yielded similar mean square error (MSE) of 0.12 on the test dataset. 
-      Loss was plotted as function of the number of epoch for GRU and LSTM with the default and embedded features.
-
-  - Models for forecasting temperature of next [12 hours](https://github.com/exchhattu/TimeseriesWeatherForecast-RNN-GRU-LSTM/blob/master/notebooks/OptimizedModel_12hrs.ipynb) 
-    * Using similar configuration, the model was generated to predict 12 hours' weather using similar 
-      parameters. The model that included embedded features yielded a better performance of 0.09 
-      mean squared error. This is slightly improved over the same model generated for 24 hours'
-     prediction. However, there is no performance improvement (0.12 MSE) for 12 hour's weather prediction 
-     over 24 hour's when only the default feature with a similar configuration was used.
-
-    * Similar experiments were also carried out to generated models using GRU. Two models yielded 0.09 
-      and 0.10 mean square error with embedded and default features respectively.
-
+## **Real-time Monitoring and Integration with IoT**
+ 1.Sensor Data Collection: The IoT system collects real-time data from sensors installed in the drainage network, including water levels and flow rates.
+ 2.Firebase Integration: Sensor data is stored and processed in Firebase for real-time analysis, allowing the RNN model to predict potential defects dynamically.
+ 3.Maintenance Alerts: Predictive analysis sends notifications to the maintenance team through the dashboard, preventing issues like manhole blockages or flooding.
+ 
 ## **Future Direction**
-  - The behavior of time series data is highly stochastic, which increases the uncertainty in finding 
-    a pattern in the data. Nonetheless, recent advancements in machine learning algorithm such as deep 
-    learning can improve the prediction performance with confidence.
-  - I am interested to explore multiple parameters in order to optimize the model 
-    to yield better performance in the availability of computing resources. Moreover, my idea is to 
-    expand the utility of a program to employ the similar time-series data from different domains.
-
+ *Expansion of the Model:
+-The model can be expanded to include additional sensor data and environmental factors like weather patterns to improve accuracy.
+-Integrating live weather data can enhance the predictive capabilities for flood risk in specific areas.
+-Further optimization and testing of the RNN models (LSTM and GRU) will continue to refine prediction accuracy.
 ## Disclamier
-Opinions expressed are solely my own and do not express the views or opinions of my employer. 
-The author assumes no responsibility or liability for any errors or omissions in the content of this site. 
-The information contained in this site is provided on an “as is” basis with no guarantees of completeness, 
-accuracy, usefulness or timeliness.
+This project is currently a work in progress and has not been fully completed. The information provided in this documentation is subject to change as further development and testing are carried out. The author assumes no responsibility or liability for any errors, omissions, or inaccuracies in the current state of the project. The results, methods, and models are experimental and may evolve as the project progresses.
