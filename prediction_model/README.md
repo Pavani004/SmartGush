@@ -49,24 +49,19 @@ Options:
 
 ## **Updated Summary**
 
-*Both GRU and LSTM models were tested for their effectiveness in predicting drainage defects based on time-series sensor data from the drainage network.
-*The Mean Absolute Error (MAE) and Mean Squared Error (MSE) were used as performance metrics.
-*Models were trained using drainage-related features like water levels, flow 
-
-* Similarly, long short-term memory(LSTM) was also tested by replacing GRU with [MAE](https://bit.ly/2lUMEd8) 
-  and [MSE](https://bit.ly/2jTdaTq) respectively. However, the performance slight decreased and 
-  was differed compared with its GRU counterpart. But there is no change 
-  for selection of loss functions. Thus, further analysis is only with MSE.
+* Both GRU and LSTM models were tested for their effectiveness in predicting drainage defects based on time-series sensor data from the drainage network.
+* The Mean Absolute Error (MAE) and Mean Squared Error (MSE) were used as performance metrics.
+* Models were trained using drainage-related features like water levels, flow 
 
 ## **Methods and Performance**
-#Feature Selection:
-*Default features include water level, flow rate, and sensor data from manholes.
-*Embedded features include day, month, and weather conditions (such as rainfall).
-#Model Configuration:
-*Models were trained for 20 epochs with 200 steps per epoch, using 0.03 dropouts and recurrent dropouts to avoid overfitting.
-#Prediction:
-*The model predicts defective manholes or blockages 24 hours in advance, helping the maintenance team to prioritize and address issues before they escalate.
-*Performance results:
+# Feature Selection:
+* Default features include water level, flow rate, and sensor data from manholes.
+* Embedded features include day, month, and weather conditions (such as rainfall).
+# Model Configuration:
+* Models were trained for 20 epochs with 200 steps per epoch, using 0.03 dropouts and recurrent dropouts to avoid overfitting.
+# Prediction:
+* The model predicts defective manholes or blockages 24 hours in advance, helping the maintenance team to prioritize and address issues before they escalate.
+* Performance results:
 GRU Model: 0.10 MSE on test dataset
 LSTM Model: 0.12 MSE on test dataset
 
@@ -78,9 +73,10 @@ LSTM Model: 0.12 MSE on test dataset
  3.Maintenance Alerts: Predictive analysis sends notifications to the maintenance team through the dashboard, preventing issues like manhole blockages or flooding.
  
 ## **Future Direction**
- *Expansion of the Model:
--The model can be expanded to include additional sensor data and environmental factors like weather patterns to improve accuracy.
--Integrating live weather data can enhance the predictive capabilities for flood risk in specific areas.
--Further optimization and testing of the RNN models (LSTM and GRU) will continue to refine prediction accuracy.
+ * Expansion of the Model:
+- The model can be expanded to include additional sensor data and environmental factors like weather patterns to improve accuracy.
+- Integrating live weather data can enhance the predictive capabilities for flood risk in specific areas.
+- Further optimization and testing of the RNN models (LSTM and GRU) will continue to refine prediction accuracy.
+- 
 ## Disclamier
 This project is currently a work in progress and has not been fully completed. The information provided in this documentation is subject to change as further development and testing are carried out. The author assumes no responsibility or liability for any errors, omissions, or inaccuracies in the current state of the project. The results, methods, and models are experimental and may evolve as the project progresses.
