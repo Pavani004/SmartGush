@@ -4,7 +4,7 @@
 
 This project focuses on the real-time monitoring and maintenance of urban drainage systems using IoT devices, predictive analytics, and location-based alert mechanisms. The goal is to mitigate flooding, reduce system downtime, and efficiently handle maintenance requests. The system integrates hardware (sensors, NodeMCU, GSM modules) with software (an Android app, Blynk for alerts, Firebase database) to streamline communication between users, administrators, and maintenance teams. Predictive analysis is implemented using RNN (Recurrent Neural Networks) to forecast defective or blocked drainage points.
 
-#Motivation
+## Motivation
 
 Urban flooding, drainage blockages, and delayed response to drainage maintenance are growing concerns, especially during heavy rainfall. Traditional methods of maintenance rely on manual checks or delayed reporting, leading to significant infrastructural damage. By automating drainage monitoring and maintenance requests, this system aims to provide a proactive solution, minimizing the risk of flooding and enhancing the effectiveness of drainage maintenance.
 
