@@ -1,12 +1,12 @@
-# IoT Smart Home App
+# Andriod app integrating with real time monitoring in drainage maintenance
 
 ## Overview
 
-This project is an Internet of Things (IoT) Flutter application that allows users to interact with and control connected devices seamlessly. The app provides a user-friendly interface to monitor and manage IoT devices, making it easy for users to stay connected to their smart environments.
+This project is an Internet of Things (IoT) Flutter application that allows users to interact with and control connected devices seamlessly. The app provides a user-friendly interface to monitor and manage IoT devices, making it easy for users to stay connected by reporting any issues and for admins to look after.
 
 ## Features
 
-- **Device Control**: Control IoT devices remotely through the app. Turn devices on/off.
+- **Device Control**: Control IoT devices remotely through the app. 
 
 - **Real-time Monitoring**: View real-time data and status updates from connected devices. Stay informed about the current state of your IoT ecosystem.
 
@@ -19,11 +19,11 @@ This project is an Internet of Things (IoT) Flutter application that allows user
 - **Flutter**: The app is built using the Flutter framework, allowing for a single codebase for both Android and iOS platforms.
 - **Dart**: The programming language used for developing the Flutter app.
 - **IoT Protocols**: Implement industry-standard IoT protocols for seamless communication with connected devices.
-- **Flask and MicroPython for Server** : Utilize Flask as the backend server framework and MicroPython for microcontroller-based IoT devices.
+- **Firebase** : Utilize Firebase as the backend server framework and MicroPython for microcontroller-based IoT devices.
 
 ## Checkout the Server Repository
 
-<a href="https://github.com/Pavitra554/IOT-server" alt="Server Repo">Server Source Code</a>
+<a href="https://github.com/Pavani004/SmartGush" alt="Server Repo">Server Source Code</a>
 
 ## Getting Started
 
@@ -40,4 +40,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Preview
 
-![Home Automation App Preview](preview/pre.png)
+![image](https://github.com/user-attachments/assets/6c3c848f-3d6c-4504-9c48-f5f517a6dd4b)
