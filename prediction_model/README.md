@@ -78,5 +78,5 @@ LSTM Model: 0.12 MSE on test dataset
 - Integrating live weather data can enhance the predictive capabilities for flood risk in specific areas.
 - Further optimization and testing of the RNN models (LSTM and GRU) will continue to refine prediction accuracy.
   
-## Disclamier
+## Disclaimer
 This project is currently a work in progress and has not been fully completed. The information provided in this documentation is subject to change as further development and testing are carried out. The author assumes no responsibility or liability for any errors, omissions, or inaccuracies in the current state of the project. The results, methods, and models are experimental and may evolve as the project progresses.
